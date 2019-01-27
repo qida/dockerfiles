@@ -1,5 +1,5 @@
-FROM alpine:3.4
-MAINTAINER Stephen Coakley <me@stephencoakley.com>
+ARG ALPINE_VERSION=latest
+FROM alpine:$ALPINE_VERSION
 
 RUN apk --no-cache upgrade && \
     apk --no-cache add s6 && \

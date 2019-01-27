@@ -46,10 +46,17 @@ You can also configure scripts to be run at regular intervals as cron jobs. This
 ## Logging
 Docker encourages the use of stdout and stderr as the means of capturing logs from a container. These logs can be hooked up to logging drivers and can be put to much better use _outside_ the container rather than _inside_. As a result, output logs from both syslog and all running services are all aggregated and redirected to stdout and stderr.
 
+## Runtime configuration
+Some of the behavior of the init process can be customized at runtime via environment variables.
+
+- `INIT_ENABLED_SERVICES`: Comma-delimited list of services to enable. This is useful for providing services that are disabled by default, but can be optionally enabled when a container is run.
+- `INIT_DISABLED_SERVICES`: Opposite of `INIT_ENABLED_SERVICES`. A comma-delimited list of services to disable.
+
 ## Utility commands
 Some custom commands are included for controlling services, the container state, or for just making working with common tasks easier:
 
 - `envsubst`: Piping command that replaces patterns of the form `${ENV_NAME}` with the value of the `ENV_NAME` environment variable. Useful for making templated config files.
+- `service`: Helper script for starting and stopping services.
 - `shutdown`: Shuts down all services and then terminates the container.
 - `halt`: Like `shutdown`, but causes the container to return a failure exit code.
 
